@@ -8,18 +8,18 @@ program
   .parse(process.argv);
  
 var lockTime = program.time || 1000*60*2;
-var maxWaitingTime = 1000*60*10;
+var maxWaitingTime = 1000*60*20;
 var enterTheDragon = Date.now()*1+maxWaitingTime;
  
-console.log = function(){}
-console.error = function(){}
+// console.log = function(){}
+// console.error = function(){}
  
 if ( !program.lock ){	
 	return process.exit(1);
 }
 
 var interval = setInterval(function(){
-	exec(`node index.js -l ${program.lock}  -t ${lockTime}`, (error, stdout, stderr) => {
+	exec(`node "C:/Program Files (x86)/Jenkins/lock/index.js" -l ${program.lock}  -t ${lockTime}`, (error, stdout, stderr) => {
 	  if (error) {
 		console.error(`exec error: ${error}`);
 		if(Date.now()>enterTheDragon){
